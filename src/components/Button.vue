@@ -1,6 +1,10 @@
 <template>
     <!-- App.vue에서 style에 scope를 지정했기때문에 component에서도 style을 가져올 수 있음 -->
-    <button :style="{background: color}" class="btn">{{text}}</button>
+    <button 
+        @click="onClick()"
+        :style="{background: color}" 
+        class="btn"
+    >{{text}}</button>
 </template>
 
 <script>
@@ -9,6 +13,11 @@
         props: {
             text: String,
             color: String
+        },
+        methods: {
+            onClick() {
+                console.log('click')
+            }
         }
     }
 </script>
