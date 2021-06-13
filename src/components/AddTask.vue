@@ -51,7 +51,7 @@ export default {
             }
 
             const newTask = {
-                id: Math.floor(Math.random() * 100000),
+                // id: Math.floor(Math.random() * 100000), json-server don't need this
                 text: this.text,
                 day: this.day,
                 reminder: this.reminder

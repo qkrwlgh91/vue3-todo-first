@@ -1,6 +1,6 @@
 {
-    "tasks" : [
-      {
+  "tasks": [
+    {
       "id": "1",
       "text": "Doctors Appointment",
       "day": "March 5th at 2:30pm",
@@ -17,6 +17,12 @@
       "text": "Food shopping",
       "day": "March 7th at 2:00pm",
       "reminder": false
+    },
+    {
+      "id": 19052,
+      "text": "learn react",
+      "day": "match gun",
+      "reminder": false
     }
-    ]
+  ]
 }
