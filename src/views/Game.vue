@@ -30,7 +30,19 @@
       </section>
       <section id="log" class="container">
         <h2>Battle Log</h2>
-        <ul></ul>
+        <ul>
+            <li v-for="(logMessage, index) in logMessages" :key=index>
+                <span :class="{'log--player': logMessage.actionBy === 'player', 'log--monster': logMessage.actionBy === 'monster'}" >
+                    {{ logMessage.actionBy === 'player' ? 'Player' : 'Monster' }}
+                </span>
+                <span v-if="logMessage.actionType === 'heal'">
+                    heals himself for <span class="log--heal">{{ logMessage.actionValue }}</span>
+                </span>
+                <span v-else>
+                    attacks and deals <span class="log--damage">{{ logMessage.actionValue }}</span>
+                </span>
+            </li>
+        </ul>
       </section>
     </div>
 </template>
@@ -96,16 +108,20 @@ export default {
             this.currentRound++
             const attackValue = this.getRandomValue(5, 12)
             this.monsterHealth -= attackValue
+            this.addLogMessage('player', 'attack', attackValue)
             this.attackPlayer()
         },
         attackPlayer() {
             const attackValue = this.getRandomValue(8, 15)
             this.playerHealth -= attackValue
+            this.addLogMessage('monster', 'attack', attackValue)
+
         },
         speacialAttackMonster() {
             this.currentRound++
             const attackValue = this.getRandomValue(10, 25)
             this.monsterHealth -= attackValue
+            this.addLogMessage('player', 'special-attack', attackValue)
             this.attackPlayer()
         }, 
         healPlayer() {
@@ -116,6 +132,7 @@ export default {
             } else {
                 this.playerHealth += healValue
             }
+            this.addLogMessage('player', 'heal', healValue)
             this.attackPlayer()
         },
         surrender() {
@@ -134,7 +151,7 @@ export default {
 
 
 
-<style scoped>
+<style>
 
 header {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
