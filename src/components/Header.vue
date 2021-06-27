@@ -7,6 +7,7 @@
             :text="showAddTask ? 'Close' : 'Add Task'" 
             :color="showAddTask ? 'red' : 'green'" 
         />
+        <router-link to="/game">game</router-link>
     </header>
 </template>
 
